@@ -53,6 +53,7 @@ export class FormCronComponent implements OnInit {
         (response: any) => {
           console.log('Resposta:', response);
           form.resetForm();
+          alert('Agendamento cadastrado!')
         },
         (error: any) => {
           console.error(error); 
