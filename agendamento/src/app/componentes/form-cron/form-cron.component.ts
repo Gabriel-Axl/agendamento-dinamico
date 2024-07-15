@@ -9,6 +9,10 @@ import { AgendarService } from 'src/app/agendar.service';
 })
 export class FormCronComponent implements OnInit {
 
+  todoDia:boolean = true;
+  todoDiaSemana:boolean = true;
+  todoMes:boolean = true;
+
   meses = [
     { nome: 'Janeiro', valor: '1' },
     { nome: 'Fevereiro', valor: '2' },
@@ -46,13 +50,32 @@ export class FormCronComponent implements OnInit {
   async criarCron(form: NgForm) {
     if (form.valid) { // faz a validação do formulario
       let cron:string;
+      let diaMes, diaSemana, todoMes;
       cron = this.tratarHorario(this.horarioSelecionado);
-      cron = cron.concat(this.diaMesSelecionado.toString() + ' ' +  this.mesSelecionado + ' ' + this.diaSelecionado)
+
+      if(this.todoDia == true){
+        diaMes = '*';
+      }else{
+        diaMes = this.diaMesSelecionado.toString()
+      }
+
+      if(this.todoDiaSemana == true){
+        diaSemana = '*';
+      }else{
+        diaSemana = this.diaSelecionado
+      }
+
+      if(this.todoMes == true){
+        todoMes = '*';
+      }else{
+        todoMes = this.mesSelecionado
+      }
+
+      cron = cron.concat( diaMes + ' ' +  todoMes + ' ' + diaSemana)
       console.log(cron)
       await this.agendamentoService.agendarTarefa(cron).subscribe(
         (response: any) => {
           console.log('Resposta:', response);
-          form.resetForm();
           alert('Agendamento cadastrado!')
         },
         (error: any) => {

@@ -1,5 +1,8 @@
+*{
+    font-size: 1.5rem;
+}
 .form-container{
-    width: 15rem;
+    width: 20rem;
     padding: 1rem;
     background-color: #fff;
     border: 2px solid #1351b42a;
@@ -12,7 +15,7 @@
     flex-direction: column;
 }
 
-#formulario-cron > label{
+.label{
     margin: 1rem 0 3px 0;
 }
 
@@ -24,14 +27,27 @@
 
 .btnForm{
     align-self: flex-end;
+    padding: 2px 6px;
     margin-top: 0.5rem;
     border: 1px solid rgb(9, 9, 238);
     border-radius: 1rem;
-    width: 5rem;
+    width: 10rem;
     cursor: pointer;
 }
 
 .btnForm:hover{
     color: #fff;
     background-color: #1351b4;
+}
+
+.checkCampo{
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.inputOpcional{
+    display: flex;
+    flex-direction: column;
 }

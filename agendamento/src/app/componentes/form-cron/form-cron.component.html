@@ -2,36 +2,56 @@
     <h3>Agendamento</h3>
     <form id="formulario-cron" #cronForm="ngForm" (ngSubmit)="criarCron(cronForm)">
         
-        <label for="horario">Escolha o horario (hh:mm:ss)</label>
+        <label class="label" for="horario">Escolha o horario (hh:mm:ss)</label>
         <input class="campo" type="time" id="horario" [(ngModel)]="horarioSelecionado" name="horarioSelecionado" step="1" required>
         <div *ngIf="cronForm.submitted && !horarioSelecionado" class="error">
             O horario é obrigatório.
         </div>
 
-        <label for="diaMesSelecionado">Digite o dia (1-31):</label>
-        <input class="campo" type="number" id="diaMesSelecionado" [(ngModel)]="diaMesSelecionado" name="diaMesSelecionado" min="1" max="31" required>
-        <div *ngIf="cronForm.submitted && (diaMesSelecionado > 31 || diaMesSelecionado < 1)">
-            Dia do mês inválido
+        <div class="checkCampo">
+            <label for="todoDia">Qualquer dia do mês</label>
+            <input type="checkbox" name="todoDia" id="todoDia" [(ngModel)]="todoDia" checked >
         </div>
 
-        <label for="selecaoDia">Escolha o dia da semana:</label>
-        <select class="campo" id="selecaoDia"  [(ngModel)]="diaSelecionado" name="diaSelecionado" required>
-            <option *ngFor="let dia of dias" [value]="dia.valor"> {{ dia.nome }}</option>
-        </select>
-        <div *ngIf="cronForm.submitted && !diaSelecionado" class="error">
-            O dia da semana é obrigatório.
+        <div class="inputOpcional" *ngIf="!todoDia">
+            <label class="label" for="diaMesSelecionado">Digite o dia (1-31):</label>
+            <input class="campo" type="number" id="diaMesSelecionado" [(ngModel)]="diaMesSelecionado" name="diaMesSelecionado" min="1" max="31" required>
+            <div *ngIf="cronForm.submitted && cronForm.controls['diaMesSelecionado'].invalid">
+                Dia do mês inválido
+            </div>
         </div>
-
-        <label for="selecaoMes">Escolha o mês:</label>
-        <select class="campo" id="selecaoMes" [(ngModel)]="mesSelecionado" name="mesSelecionado" required>
-            <option *ngFor="let mes of meses" [value]="mes.valor">{{ mes.nome }}</option>
-        </select>
-        <div *ngIf="cronForm.submitted && !mesSelecionado" class="error">
-            O mês é obrigatório.
+       
+        <div class="checkCampo">
+            <label for="todoDiaSemana">Qualquer dia da semana</label>
+            <input type="checkbox" name="todoDiaSemana" id="todoDiaSemana" [(ngModel)]="todoDiaSemana" checked >
         </div>
-
         
+        
+        <div class="inputOpcional" *ngIf="!todoDiaSemana">
+            <label class="label" for="selecaoDia">Escolha o dia da semana:</label>
+            <select class="campo" id="selecaoDia"  [(ngModel)]="diaSelecionado" name="diaSelecionado" required>
+                <option *ngFor="let dia of dias" [value]="dia.valor"> {{ dia.nome }}</option>
+            </select>
+            <div *ngIf="cronForm.submitted && !diaSelecionado" class="error">
+                O dia da semana é obrigatório.
+            </div>
+        </div>
 
+        <div class="checkCampo">
+            <label for="todoMes">Qualquer mês</label>
+            <input type="checkbox" name="todoMes" id="todoMes" [(ngModel)]="todoMes" checked>
+        </div>
+        
+        <div class="inputOpcional" *ngIf="!todoMes">
+            <label class="label" for="selecaoMes">Escolha o mês:</label>
+            <select class="campo" id="selecaoMes" [(ngModel)]="mesSelecionado" name="mesSelecionado" required>
+                <option *ngFor="let mes of meses" [value]="mes.valor">{{ mes.nome }}</option>
+            </select>
+            <div *ngIf="(cronForm.submitted && !mesSelecionado)" class="error">
+                O mês é obrigatório.
+            </div>
+        </div>
+        
         <button class="btnForm" type="submit">Agendar</button>
     </form>
 </div>
