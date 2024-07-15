@@ -1,0 +1,22 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./agendamento
+    ports:
+      - "4200:4200"
+    networks:
+      - minha-rede
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./api/agendamento
+    ports:
+      - "8080:8080"
+    networks:
+      - minha-rede
+networks:
+  minha-rede:
+    driver: bridge
