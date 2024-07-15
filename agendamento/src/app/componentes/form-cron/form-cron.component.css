@@ -1,7 +1,10 @@
 .form-container{
     width: 15rem;
     padding: 1rem;
-    background-color: bisque;
+    background-color: #fff;
+    border: 2px solid #1351b42a;
+    border-radius: 1rem;
+    margin: 3rem;
 }
 
 #formulario-cron{
@@ -10,5 +13,25 @@
 }
 
 #formulario-cron > label{
-    margin-top: 1rem;
+    margin: 1rem 0 3px 0;
+}
+
+.campo{
+    padding: 3px 3px 3px 1rem;
+    border: 2px solid #1351b4;
+    border-radius: 1rem;
+}
+
+.btnForm{
+    align-self: flex-end;
+    margin-top: 0.5rem;
+    border: 1px solid rgb(9, 9, 238);
+    border-radius: 1rem;
+    width: 5rem;
+    cursor: pointer;
+}
+
+.btnForm:hover{
+    color: #fff;
+    background-color: #1351b4;
 }
