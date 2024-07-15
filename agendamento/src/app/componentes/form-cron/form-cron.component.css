@@ -1,0 +1,14 @@
+.form-container{
+    width: 15rem;
+    padding: 1rem;
+    background-color: bisque;
+}
+
+#formulario-cron{
+    display: flex;
+    flex-direction: column;
+}
+
+#formulario-cron > label{
+    margin-top: 1rem;
+}
