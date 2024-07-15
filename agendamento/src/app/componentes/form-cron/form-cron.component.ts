@@ -50,21 +50,14 @@ export class FormCronComponent implements OnInit {
       cron = cron.concat(this.diaMesSelecionado.toString() + ' ' +  this.mesSelecionado + ' ' + this.diaSelecionado)
       console.log(cron)
       await this.agendamentoService.agendarTarefa(cron).subscribe(
-        (response:any) =>{
-          console.log(response)
+        (response: any) => {
+          console.log('Resposta:', response);
+          form.resetForm();
+        },
+        (error: any) => {
+          console.error(error); 
         }
       );
-
-        await this.agendamentoService.agendarTarefa(cron).subscribe(
-          (response:any) =>{
-            console.log(response)
-            form.resetForm(); // limpa os campos
-          },
-          error => {
-            console.log(error)
-          }
-        )   
-      
     } else {
       console.log('Formulário inválido');
     }

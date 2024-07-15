@@ -6,11 +6,13 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AgendarService {
-  private url = 'http://localhost:8080/agendamento/'
+  private url = 'http://localhost:8080/api/cron/'
 
   constructor(private http : HttpClient) { }
 
   agendarTarefa(cron:string): Observable<any>{
-    return this.http.put(`${this.url}1`, cron);
+    const cronJson = { "cronograma": cron }
+    console.log(cronJson)
+    return this.http.put(`${this.url}`, cronJson);
   }
 }
